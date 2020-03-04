@@ -14,7 +14,6 @@ class BorrowerController extends Controller
 
     public function index()
     {
-        // $borrowers = Borrower::paginate(3);
         $borrowers = Borrower::all();
         return view('borrowers.index', compact('borrowers'));
     }

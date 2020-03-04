@@ -53,15 +53,6 @@
                             </div>
 
 
-                            {{-- <div class="form-group">
-                                <label for="sex">Sex</label>
-                                <input type="text" class="form-control @error('sex') is-invalid @enderror" value="{{ old('sex') ? old('sex') : $borrower->sex }}" id="sex" name="sex" placeholder="Enter sex" required autocomplete="sex">
-                                @error('sex')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div> --}}
 
                             <div class="form-group">
                                 <label for="sex">Sex</label>

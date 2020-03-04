@@ -160,13 +160,6 @@
                         </table>
                     </div>
 
-                    {{--
-                    Pagination function provided by laravel
-                
-                    <div class="card-footer clearfix">
-                        {{ $borrowers->links() }}
-                    </div>
-                    --}}
                 </div>
             </div>
         </div>
