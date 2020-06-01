@@ -41,7 +41,7 @@ class DashboardController extends Controller
         }
 
         arsort($categoryIdCounts);
-
+        
         // end of pie chart
         
         return view('dashboard.index', compact([

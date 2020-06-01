@@ -118,49 +118,47 @@
 
       $(document).ready(function() {
 
-        var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
-        var pieData = {
-          labels: [
-            @foreach($categoryIdCounts as $key => $value)
-            '{!! $key !!}',
-            @endforeach
-          ],
-          datasets: [
-            {
+        let pieChartCanvas = document.getElementById('pieChart').getContext('2d');
+
+        let pieChart = new Chart(pieChartCanvas, {
+          type: 'pie',
+          data: {
+            labels: [
+              @foreach($categoryIdCounts as $key => $value)
+              '{!! $key !!}',
+              @endforeach
+            ],
+            datasets: [{
+              label: 'Percentage',
               data: [
                 @foreach($categoryIdCounts as $categoryIdCount)
                 {{ $categoryIdCount }},
-                @endforeach                
+                @endforeach
               ],
-              backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-            }
-          ]
-        };
-
-        var pieOptions     = {
-          maintainAspectRatio : false,
-          responsive : true,
-          tooltips: {
-            callbacks: {
-              label: function(tooltipItem, data) {
-                return data['labels'][tooltipItem['index']] + ': ' + data['datasets'][0]['data'][tooltipItem['index']] + '%';
-              }
-            }
+              backgroundColor: [
+                @for($i=0; $i<sizeof($categoryIdCounts); $i++)
+                '#{{ substr(md5(rand()), 0, 6) }}',
+                @endfor
+              ]
+            }]
           },
-          title: {
-            display: true,
-            text: 'Rented books categories of all time'
+          options: {
+            title: {
+              display: true,
+              text: 'Rented books categories of all time',
+            },
+            responsive: true,
+            tooltips: {
+              callbacks: {
+                label: function(tooltipItem, data) {
+                  return data['labels'][tooltipItem['index']] + ': ' + data['datasets'][0]['data'][tooltipItem['index']] + '%';
+                }
+              }
+            },
+            maintainAspectRatio : false,
+
           }
-        };
-
-
-        var pieChart = new Chart(pieChartCanvas, {
-          type: 'pie',
-          data: pieData,
-          options: pieOptions     
-        })
-
-
+        });
 
       });
 
@@ -173,7 +171,6 @@
           if(!current.classList.contains('active')) {
               current.classList.add('active');
           }
-
           
       }
 
